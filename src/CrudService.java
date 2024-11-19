@@ -6,4 +6,5 @@ public interface CrudService<T> {
     T update(Long id, T entity);
     boolean delete(Long id);
     List<T> listAll();
+
 }
