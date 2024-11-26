@@ -1,9 +1,7 @@
-import java.util.List;
-
 public interface CrudService<T> {
-    T create(T entity);
+    void create(T t);
     T read(Long id);
-    T update(Long id, T entity);
-    boolean delete(Long id);
-    List<T> listAll();
+    void update(Long id, T t);
+    void delete(Long id);  // 반환 타입을 void로 수정
+    void listAll();
 }
