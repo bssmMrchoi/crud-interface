@@ -1,12 +1,14 @@
-import java.util.HashMap;  // HashMap import
-import java.util.Map;     // Map import
+import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
 
 public class UserService implements CrudService<User> {
-    private Map<Long, User> userMap = new HashMap<>();  // Map과 HashMap 사용
+    private Map<Long, User> userMap = new HashMap<>();
 
     @Override
-    public void create(User user) {
-        userMap.put(user.getId(), user);
+    public User create(User user) {
+        return userMap.put(user.getId(), user);
     }
 
     @Override
@@ -15,29 +17,25 @@ public class UserService implements CrudService<User> {
     }
 
     @Override
-    public void update(Long id, User user) {
+    public User update(Long id, User user) {
         if (userMap.containsKey(id)) {
             userMap.put(id, user);
+            return user;
         }
+        return null;
     }
 
     @Override
-    public void delete(Long id) {
-        userMap.remove(id);
+    public boolean delete(Long id) {
+        return userMap.remove(id) != null;
     }
 
     @Override
-    public void listAll() {
-        if (userMap.isEmpty()) {
-            System.out.println("No users available.");
-        } else {
-            for (User user : userMap.values()) {
-                System.out.println(user);
-            }
-        }
+    public List<User> listAll() {
+        return new ArrayList<>(userMap.values());  // List로 반환
     }
 
     public void printAllUsers() {
-        listAll();  // listAll 메서드를 호출하여 사용자 목록을 출력
+        System.out.println(listAll());
     }
 }
