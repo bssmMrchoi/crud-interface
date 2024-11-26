@@ -1,7 +1,4 @@
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class UserService implements CrudService<User> {
 
@@ -44,6 +41,9 @@ public class UserService implements CrudService<User> {
 
   @Override
   public List<User> listAll() {
-    return List.of();
+    ArrayList<User> list = new ArrayList<>();
+    list.addAll(users.values());
+
+    return new ArrayList<>(list);
   }
 }

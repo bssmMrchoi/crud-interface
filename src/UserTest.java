@@ -17,5 +17,7 @@ public class UserTest {
 
         User find1 = userService.read(1L);
         System.out.println(find1 + "\n");
+
+        System.out.println(userService.listAll());
     }
 }
