@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.List;
 
 public interface CrudService<T> {
@@ -5,5 +6,5 @@ public interface CrudService<T> {
     T read(Long id);
     T update(Long id, T entity);
     boolean delete(Long id);
-    List<T> listAll();
+    List<T> ListAll();
 }
