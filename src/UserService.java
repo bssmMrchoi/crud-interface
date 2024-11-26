@@ -5,12 +5,12 @@ import java.util.Map;
 
 public class UserService implements CrudService<User> {
   private Map<Long, User> userMap = new HashMap<>();
-  private long currentId = 1;
+  private Long currentId = 1L;
 
   @Override
   public User create(User user) {
+    user.setId(currentId++);
     userMap.put(currentId, user);
-    currentId++;
     return user;
   }
 
