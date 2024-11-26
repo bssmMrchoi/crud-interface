@@ -21,7 +21,7 @@ public class UserTest {
         System.out.println(userService.delete(1L));
         System.out.println(userService.read(1L));
 
-        // List All -> 전부다 보여줘
-        userService.listAll().forEach(System.out::println);
+        // HashMapAll -> 다 보여주셈
+        userService.ListAll().forEach(System.out::println);
     }
 }

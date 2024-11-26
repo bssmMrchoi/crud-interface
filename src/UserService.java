@@ -1,44 +1,37 @@
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 public class UserService implements CrudService<User> {
-  private List<User> users = new ArrayList<User>();
+  private Map<Long, User> users = new HashMap<>();
   private Long nextId = 1L;
 
 
   @Override
   public User create(User entity) {
     entity.setId(nextId++);
-    users.add(entity);
+    users.put(entity.getId(), entity);
     return entity;
   }
 
   @Override
   public User read(Long id) {
-    return users.stream().filter(user -> user.getId().equals(id)).findFirst().orElse(null);
+    return users.get(id);
   }
 
   @Override
   public User update(Long id, User entity) {
-    Optional<User> findUser = users.stream().filter(user -> user.getId().equals(id)).findFirst();
-    if (findUser.isPresent()) {
-      User user = findUser.get();
-      user.setName(entity.getName());
-      user.setEmail(entity.getEmail());
-      user.setPassword(entity.getPassword());
-      return user;
-    }
-    return null;
+    return users.put(id, entity);
   }
 
   @Override
   public boolean delete(Long id) {
-    return users.removeIf(user -> user.getId().equals(id));
+    return users.remove(id) != null;
   }
 
   @Override
-  public List<User> listAll() {
-    return new ArrayList<>(users);
+  public List<User> ListAll() {
+    return users.values().stream().toList();
   }
 }
+
